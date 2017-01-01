@@ -21,15 +21,36 @@ class CommentBox extends React.Component {
         }
     }
 
+    _handleClick(){
+        this.setState({
+            showComments: !this.state.showComments
+        });
+    }
+
+    constructor(){
+        super();
+
+        this.state = {
+            showComments: false
+        };
+    }
+
     render(){
         const comments = this._getComments();
+        let commentNodes;
+        let buttonText = 'Show comments';
+        if(this.state.showComments){
+            buttonText = 'Hide comments';
+        }
+        if(this.state.showComments){
+            commentNodes = <div className="comment-list">{comments}</div>;
+        }
         return(
             <div className="comment-box">
                 <h3>Comments</h3>
+                <button onClick={this._handleClick.bind(this)}>{buttonText}</button>
                 <h4 className="comment-count">{this._getCommentsTitle(comments.length)}</h4>
-                <div className="comment-list">
-                    {comments}
-                </div>
+                {commentNodes}
             </div>
         );
     }
