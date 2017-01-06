@@ -39,8 +39,11 @@ class CommentBox extends React.Component {
     _fetchCommands(){
         jQuery.ajax({
             method: 'GET',
-            url: '/api/comments'
-        })
+            url: '/api/comments',
+            success: (comments) => {
+                this.setState({comments})
+            }
+        });
     }
 
     constructor(){
@@ -50,6 +53,18 @@ class CommentBox extends React.Component {
             showComments: false,
             comments: []
         };
+    }
+
+    componentWillMount(){
+        this._fetchCommands();
+    }
+
+    componentDidMount(){
+        this._timer = setInterval(() => this._fetchCommands(), 5000);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this._timer);
     }
 
     render(){
