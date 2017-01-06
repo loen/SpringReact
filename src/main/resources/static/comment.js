@@ -9,11 +9,16 @@ class Comment extends React.Component {
                     {this.props.body}
                 </p>
                 <div className="comment-footer">
-                    <a href="#" className="comment-footer-delete">
-                        Delete comment
-                    </a>
+                    <a href="#" onClick={this._handleDelete.bind(this)}>Delete Comment</a>
                 </div>
             </div>
         );
+    }
+
+    _handleDelete(event){
+        event.preventDefault();
+        if(confirm('Are you sure ?')) {
+            this.props.onDelete(this.props.comment);
+        }
     }
 }
