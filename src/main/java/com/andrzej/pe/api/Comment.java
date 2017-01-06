@@ -2,10 +2,7 @@ package com.andrzej.pe.api;
 
 import com.andrzej.pe.dao.CommentDao;
 import com.andrzej.pe.dao.CommentRequest;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +35,7 @@ public class Comment {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/comments")
-    public CommentDao createComment(CommentRequest commentRequest) {
+    public CommentDao createComment(@RequestBody CommentRequest commentRequest) {
         int id = comments.size() + 1;
         CommentDao commentDao = new CommentDao(id, commentRequest.getAuthor(), commentRequest.getBody());
         comments.add(commentDao);

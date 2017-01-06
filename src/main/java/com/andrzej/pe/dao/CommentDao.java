@@ -1,9 +1,11 @@
 package com.andrzej.pe.dao;
 
 public class CommentDao {
-    private final int id;
-    private final String author;
-    private final String body;
+    private  int id;
+    private  String author;
+    private  String body;
+
+    public CommentDao(){}
 
     public CommentDao(int id, String author, String body) {
         this.id = id;
