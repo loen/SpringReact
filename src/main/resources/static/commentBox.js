@@ -36,15 +36,19 @@ class CommentBox extends React.Component {
         this.setState({comments: this.state.comments.concat([comment]) });
     }
 
+    _fetchCommands(){
+        jQuery.ajax({
+            method: 'GET',
+            url: '/api/comments'
+        })
+    }
+
     constructor(){
         super();
 
         this.state = {
             showComments: false,
-            comments: [
-                {id: 1, author:"Billy Jean", body:"It's not my love" },
-                {id: 2, author:"Bender", body:"Beer baby"}
-            ]
+            comments: []
         };
     }
 
