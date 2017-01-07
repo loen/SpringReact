@@ -31,11 +31,19 @@ class CommentBox extends React.Component {
 
     _addComment(author, body){
         const comment = {
-            id: this.state.comments.length + 1,
             author,
             body
         };
-        this.setState({comments: this.state.comments.concat([comment]) });
+
+        jQuery.ajax ({
+            url: 'api/comments',
+            type: "POST",
+            data: JSON.stringify(comment),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: newComment => this.setState({comments: this.state.comments.concat([newComment])})
+        });
+
     }
 
     _deleteComment(comment){
