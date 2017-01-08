@@ -13,11 +13,13 @@ import java.util.stream.Collectors;
 public class Comment {
 
     private List<CommentDao> comments;
+    private int nextId = 1;
 
     public Comment() {
         this.comments = new ArrayList();
         for (int i = 1; i <= 3 ; i++) {
-            CommentDao c = new CommentDao(i, "Autor " + i, "Komentarz numer " + i);
+            CommentDao c = new CommentDao(nextId, "Autor " + i, "Komentarz numer " + i);
+            nextId++;
             comments.add(c);
         }
     }
@@ -36,8 +38,8 @@ public class Comment {
 
     @RequestMapping(method = RequestMethod.POST, path = "/comments")
     public CommentDao createComment(@RequestBody CommentRequest commentRequest) {
-        int id = comments.size() + 1;
-        CommentDao commentDao = new CommentDao(id, commentRequest.getAuthor(), commentRequest.getBody());
+        CommentDao commentDao = new CommentDao(nextId, commentRequest.getAuthor(), commentRequest.getBody());
+        nextId++;
         comments.add(commentDao);
         return commentDao;
     }

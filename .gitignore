@@ -46,3 +46,30 @@ crashlytics.properties
 crashlytics-build.properties
 # MVN
 target/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directories
+node_modules
+jspm_packages
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+#webpack artifacts
+src/client/public/bundle.js
+src/client/public/bundle.js.map
