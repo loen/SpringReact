@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --content-base src/client/public/",
-    "api": "json-server --watch src/restMock/comments.json --routes src/restMock/routes.json --port 8080",
+    "dev": "SET NODE_ENV=dev&& webpack-dev-server --content-base src/client/public/",
+    "api": "json-server --watch src/restMock/comments.json --routes src/restMock/routes.json --port 3004",
     "build": "webpack -p"
   },
   "author": "",

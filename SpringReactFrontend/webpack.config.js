@@ -18,7 +18,12 @@ var config = {
                 loader : 'babel'
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.EnvironmentPlugin([
+            'NODE_ENV'
+        ])
+    ],
 };
 
 module.exports = config;

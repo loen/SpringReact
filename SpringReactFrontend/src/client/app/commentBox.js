@@ -4,6 +4,7 @@ import jQuery from 'jquery';
 
 import Comment from './comment.js';
 import CommentForm from './commentForm.js';
+import config from './config/config.js';
 
 class CommentBox extends React.Component {
 
@@ -43,7 +44,7 @@ class CommentBox extends React.Component {
         };
 
         jQuery.ajax ({
-            url: 'api/comments',
+            url: this._url + 'api/comments',
             type: "POST",
             data: JSON.stringify(comment),
             dataType: "json",
@@ -56,7 +57,7 @@ class CommentBox extends React.Component {
     _deleteComment(comment){
         jQuery.ajax({
            method: 'DELETE',
-           url: `/api/comments/${comment.id}`
+           url: `${this._url}/api/comments/${comment.id}`
         });
 
         const comments = [...this.state.comments];
@@ -67,7 +68,7 @@ class CommentBox extends React.Component {
     _fetchCommands(){
         jQuery.ajax({
             method: 'GET',
-            url: '/api/comments',
+            url: this._url + '/api/comments',
             success: (comments) => {
                 this.setState({comments})
             }
@@ -76,6 +77,7 @@ class CommentBox extends React.Component {
 
     constructor(){
         super();
+        this._url = config[process.env.NODE_ENV].api;
 
         this.state = {
             showComments: false,
