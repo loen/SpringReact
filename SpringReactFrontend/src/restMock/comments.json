@@ -1,0 +1,19 @@
+{
+  "comments": [
+    {
+      "id": 2,
+      "author": "Autor 2",
+      "body": "Komentarz numer 2"
+    },
+    {
+      "id": 3,
+      "author": "Autor 3",
+      "body": "Komentarz numer 3"
+    },
+    {
+      "author": "bolek",
+      "body": "prus",
+      "id": 4
+    }
+  ]
+}

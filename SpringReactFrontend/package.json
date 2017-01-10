@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --content-base src/client/public/",
-    "build" : "webpack -p"
+    "api": "json-server --watch src/restMock/comments.json --routes src/restMock/routes.json --port 8080",
+    "build": "webpack -p"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +17,8 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "webpack": "^1.14.0"
+  },
+  "devDependencies": {
+    "json-server": "^0.9.4"
   }
 }
