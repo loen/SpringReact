@@ -11,7 +11,7 @@ class CommentForm extends React.Component {
                     <textarea placeholder="Comment:" ref={(textarea) => this._body = textarea}></textarea>
                 </div>
                 <div className="comment-form-actions">
-                    <button type="submit">
+                    <button className="btn btn-default navbar-btn" type="submit">
                         Post Comment
                     </button>
                 </div>

@@ -5,6 +5,7 @@ import jQuery from 'jquery';
 import Comment from './comment.js';
 import CommentForm from './commentForm.js';
 import config from './config/config.js';
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 class CommentBox extends React.Component {
 
