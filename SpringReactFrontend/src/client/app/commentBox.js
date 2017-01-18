@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import jQuery from 'jquery';
 
 import Comment from './comment.js';
 import CommentForm from './commentForm.js';
 import config from './config/config.js';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+
 
 class CommentBox extends React.Component {
 
@@ -78,7 +77,11 @@ class CommentBox extends React.Component {
 
     constructor(){
         super();
-        this._url = config[process.env.NODE_ENV].api;
+        var env = 'production';
+        if(process.env.NODE_ENV){
+            env = process.env.NODE_ENV;
+        }
+        this._url = config[env].api;
 
         this.state = {
             showComments: false,
@@ -120,4 +123,4 @@ class CommentBox extends React.Component {
     }
 }
 
-ReactDOM.render(<CommentBox />, document.getElementById("comment-box"));
+export default CommentBox

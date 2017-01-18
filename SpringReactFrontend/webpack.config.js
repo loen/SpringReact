@@ -5,7 +5,7 @@ var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
 
 var config = {
-    entry: APP_DIR + '/commentBox.js',
+    entry: APP_DIR + '/app.js',
     output: {
         path: BUILD_DIR,
         filename: 'bundle.js'
@@ -51,7 +51,7 @@ var config = {
         new webpack.EnvironmentPlugin([
             'NODE_ENV'
         ])
-    ],
+    ]
 };
 
 module.exports = config;
