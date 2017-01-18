@@ -19,7 +19,7 @@ class Layout extends React.Component {
                     </li>
                 </ul>
             </div>
-
+            {this.props.children}
         </div>);
     }
 }

@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
-import {Router, Route, browserHistory } from 'react-router';
+import {Router, Route, Redirect, browserHistory } from 'react-router';
 
 import CommentBox from './commentBox.js';
 import Layout from './layout.js';
 
 const app = (
     <Router history={browserHistory}>
-        <Route path="/index.html" component={Layout} >
+        <Redirect from="/index.html" to="/" />
+        <Route path="/" component={Layout} >
+            <Route path="blog" component={CommentBox} />
         </Route>
-        <Route path="/blog" component={CommentBox} />
     </Router>
 )
 
