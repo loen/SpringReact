@@ -10,9 +10,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.servlet.Filter;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -21,17 +24,30 @@ public class HelloControllerTest {
     @Autowired
     private WebApplicationContext wac;
 
+    @Autowired
+    private Filter springSecurityFilterChain;
+
     private MockMvc mockMvc;
 
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+
+        this.mockMvc = MockMvcBuilders
+                .webAppContextSetup(this.wac)
+                .addFilters(springSecurityFilterChain)
+                .build();
     }
 
     @Test
     public void HelloControllerIsWorking() throws Exception {
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/").with(user("test").password("pass")))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index.html"));
+                .andExpect(view().name("index"));
+    }
+
+    @Test
+    public void shouldReturnForbiddenWhenNoUser() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isUnauthorized());
     }
 }

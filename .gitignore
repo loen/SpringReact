@@ -73,4 +73,4 @@ jspm_packages
 #webpack artifacts
 src/client/public/bundle.js
 src/client/public/bundle.js.map
-static/vendors/bundle.js
+bundle.js

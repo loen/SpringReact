@@ -2,6 +2,7 @@ package com.andrzej.pe.api;
 
 import com.andrzej.pe.dao.CommentDao;
 import com.andrzej.pe.dao.CommentRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -25,11 +26,13 @@ public class Comment {
     }
 
     @RequestMapping("/comments")
+    @PreAuthorize("hasAuthority(@groups.ADMIN)")
     public List<CommentDao> getComments() {
         return comments;
     }
 
     @RequestMapping(method= RequestMethod.DELETE, path = "/comments/{id}")
+    @PreAuthorize("hasAuthority(@groups.ADMIN)")
     public void removeComment(@PathVariable Integer id){
         comments = comments.stream()
                 .filter(c -> c.getId() != id )
@@ -37,6 +40,7 @@ public class Comment {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/comments")
+    @PreAuthorize("hasAuthority(@groups.ADMIN)")
     public CommentDao createComment(@RequestBody CommentRequest commentRequest) {
         CommentDao commentDao = new CommentDao(nextId, commentRequest.getAuthor(), commentRequest.getBody());
         nextId++;
